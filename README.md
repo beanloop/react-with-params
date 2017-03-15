@@ -13,23 +13,23 @@ npm install --save react-with-params
 
 ## Usage
 ```typescript
-  import {withParams} from 'react-with-params'
+import {withParams} from 'react-with-params'
 
-  const ShowName = withParams('name', {match: '/user/:name'})(({name}) =>
-    <span>{name}</span>
-  )
-  
-  <Route exact path='/user/:name' component={ShowName} />
+const ShowName = withParams('name', {match: '/user/:name'})(({name}) =>
+  <span>{name}</span>
+)
+
+<Route exact path='/user/:name' component={ShowName} />
 ```
 
 ```typescript
-  import {withParams} from 'react-with-params'
+import {withParams} from 'react-with-params'
 
-  const ShowNameAndId = withParams(['name', 'id'], {match: '/user/:name/:id'})(({name, id}) =>
-    <span>{id} - {name}</span>
-  )
-  
-  <Route exact path='/user/:name/:id' component={ShowNameAndId} />
+const ShowNameAndId = withParams(['name', 'id'], {match: '/user/:name/:id'})(({name, id}) =>
+  <span>{id} - {name}</span>
+)
+
+<Route exact path='/user/:name/:id' component={ShowNameAndId} />
 ```
 
 ## License
