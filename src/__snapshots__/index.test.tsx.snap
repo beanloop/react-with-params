@@ -1,0 +1,17 @@
+exports[`withParams should extract a single param 1`] = `
+<span>
+  ben
+</span>
+`;
+
+exports[`withParams should extract multiple params 1`] = `
+<span>
+  1 - ben
+</span>
+`;
+
+exports[`withParams should extract params with exactly false 1`] = `
+<span>
+  1 - ben
+</span>
+`;
