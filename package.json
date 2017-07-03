@@ -1,6 +1,6 @@
 {
   "name": "react-with-params",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "React HOC for extracting router params",
   "main": "dist/src/index.js",
   "scripts": {
