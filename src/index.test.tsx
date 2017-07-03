@@ -6,7 +6,7 @@ import {withParams} from './index'
 
 describe('withParams', () => {
   it('should extract a single param', () => {
-    const ShowName = withParams('name', {match: '/user/:name'})(({name}) =>
+    const ShowName = withParams({params: 'name', match: '/user/:name'})(({name}) =>
       <span>{name}</span>
     )
 
@@ -20,7 +20,7 @@ describe('withParams', () => {
   })
 
   it('should extract multiple params', () => {
-    const ShowIdAndName = withParams(['id', 'name'], {match: '/user/:id/:name'})(({id, name}) =>
+    const ShowIdAndName = withParams({params: ['id', 'name'], match: '/user/:id/:name'})(({id, name}) =>
       <span>{id} - {name}</span>
     )
 
@@ -34,7 +34,8 @@ describe('withParams', () => {
   })
 
   it('should extract params with exactly false', () => {
-    const ShowIdAndName = withParams(['id', 'name'], {
+    const ShowIdAndName = withParams({
+      params: ['id', 'name'],
       match: '/user/:id/:name',
       exactly: false,
     })(({id, name}) =>
@@ -44,6 +45,40 @@ describe('withParams', () => {
     const wrapper = render(
       <Router initialEntries={['/user/1/ben/the/third']}>
         <ShowIdAndName />
+      </Router>
+    )
+
+    expect(toJson(wrapper)).toMatchSnapshot()
+  })
+
+  it('should extract a single query parameter', () => {
+    const Display = withParams({
+      queryParams: 'next',
+      match: '/users',
+    })(({next}) =>
+      <span>{next}</span>
+    )
+
+    const wrapper = render(
+      <Router initialEntries={['/users?next=/login']}>
+        <Display />
+      </Router>
+    )
+
+    expect(toJson(wrapper)).toMatchSnapshot()
+  })
+
+  it('should extract multiple query parameters', () => {
+    const Display = withParams({
+      queryParams: ['next', 'timestamp'],
+      match: '/users',
+    })(({next, timestamp}) =>
+      <span>{next} - {timestamp}</span>
+    )
+
+    const wrapper = render(
+      <Router initialEntries={['/users?next=/login&timestamp=1489995623368']}>
+        <Display />
       </Router>
     )
 

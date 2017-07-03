@@ -6,9 +6,21 @@ exports[`withParams should extract a single param 1`] = `
 </span>
 `;
 
+exports[`withParams should extract a single query parameter 1`] = `
+<span>
+  /login
+</span>
+`;
+
 exports[`withParams should extract multiple params 1`] = `
 <span>
   1 - ben
+</span>
+`;
+
+exports[`withParams should extract multiple query parameters 1`] = `
+<span>
+  /login - 1489995623368
 </span>
 `;
 
