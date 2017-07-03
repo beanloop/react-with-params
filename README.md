@@ -16,7 +16,7 @@ npm install --save react-with-params
 import Route from 'react-router/Route'
 import {withParams} from 'react-with-params'
 
-const ShowName = withParams('name', {match: '/user/:name'})(({name}) =>
+const ShowName = withParams({params: 'name', match: '/user/:name'})(({name}) =>
   <span>{name}</span>
 )
 
@@ -27,11 +27,40 @@ const ShowName = withParams('name', {match: '/user/:name'})(({name}) =>
 import Route from 'react-router/Route'
 import {withParams} from 'react-with-params'
 
-const ShowNameAndId = withParams(['name', 'id'], {match: '/user/:name/:id'})(({name, id}) =>
+const ShowNameAndId = withParams({params: ['name', 'id'], match: '/user/:name/:id'})(({name, id}) =>
   <span>{id} - {name}</span>
 )
 
 <Route exact path='/user/:name/:id' component={ShowNameAndId} />
+```
+
+### Query parameters
+```typescript
+import Route from 'react-router/Route'
+import {withParams} from 'react-with-params'
+
+const Display = withParams({
+  queryParams: 'next',
+  match: '/users',
+})(({next}) =>
+  <span>{next}</span>
+)
+
+<Route exact path='/users' component={Display} />
+```
+
+```typescript
+import Route from 'react-router/Route'
+import {withParams} from 'react-with-params'
+
+const Display = withParams({
+  queryParams: ['next', 'timestamp'],
+  match: '/users',
+})(({next, timestamp}) =>
+  <span>{next} - {timestamp}</span>
+)
+
+<Route exact path='/users' component={Display} />
 ```
 
 ## License
