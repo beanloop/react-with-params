@@ -6,8 +6,8 @@ import setDisplayName from 'recompose/setDisplayName'
 import wrapDisplayName from 'recompose/wrapDisplayName'
 
 function extractParams(names, params) {
-  if (!names || !params) return
-  const newProps = {params}
+  if (!names || !params || names.length === 0) return
+  const newProps = {}
 
   for (const name of names) {
     newProps[name] = params[name]
@@ -56,8 +56,12 @@ export const withParams = (
 ) => WrappedComponent => {
   const displayName = wrapDisplayName(WrappedComponent, 'withParams')
 
-  paramsNames = Array.isArray(paramsNames) ? paramsNames : [paramsNames]
-  queryParams = Array.isArray(queryParams) ? queryParams : [queryParams]
+  paramsNames = Array.isArray(paramsNames)
+    ? paramsNames
+    : paramsNames ? [paramsNames] : []
+  queryParams = Array.isArray(queryParams)
+    ? queryParams
+    : queryParams ? [queryParams] : []
 
   if (state) {
     state = Array.isArray(state) ? state : [state]
